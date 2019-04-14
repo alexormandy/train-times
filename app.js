@@ -19,7 +19,13 @@ app.post("/", (req, res) => {
       "https://transportapi.com/v3/uk/train/station/cre///timetable.json?app_id=3be79224&app_key=b0fc747a0aaf204a7d43df5d93e55cd4&train_status=passenger"
     )
     .then(result => {
-      res.send(result.data.departures.all[0]);
+      let operator_name = result.data.departures.all[0].operator_name;
+      let destination_name = result.data.departures.all[0].destination_name;
+      let aimed_departure_time =
+        result.data.departures.all[0].aimed_departure_time;
+      res.send(
+        `The next train is a ${operator_name} to ${destination_name} leaving at ${aimed_departure_time}.`
+      );
     })
     .catch(err => {
       console.log(err);
@@ -32,7 +38,13 @@ app.get("/", (req, res) => {
       "https://transportapi.com/v3/uk/train/station/cre///timetable.json?app_id=3be79224&app_key=b0fc747a0aaf204a7d43df5d93e55cd4&train_status=passenger"
     )
     .then(result => {
-      res.send(result.data.departures.all[0]);
+      let operator_name = result.data.departures.all[0].operator_name;
+      let destination_name = result.data.departures.all[0].destination_name;
+      let aimed_departure_time =
+        result.data.departures.all[0].aimed_departure_time;
+      res.send(
+        `The next train is a ${operator_name} to ${destination_name} leaving at ${aimed_departure_time}.`
+      );
     })
     .catch(err => {
       console.log(err);
