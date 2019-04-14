@@ -7,7 +7,12 @@ const publicDirectory = path.join(__dirname, "../public");
 app.use(express.static(publicDirectory));
 const port = process.env.PORT || 3000;
 
-app.get("/departures", (req, res) => {
+const ngrok = require("ngrok");
+(async function() {
+  const url = await ngrok.connect();
+})();
+
+app.get("/", (req, res) => {
   axios
     .get(
       "https://transportapi.com/v3/uk/train/station/cre///timetable.json?app_id=3be79224&app_key=b0fc747a0aaf204a7d43df5d93e55cd4&train_status=passenger"
