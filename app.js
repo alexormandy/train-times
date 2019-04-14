@@ -26,6 +26,19 @@ app.post("/", (req, res) => {
     });
 });
 
+app.get("/", (req, res) => {
+  axios
+    .get(
+      "https://transportapi.com/v3/uk/train/station/cre///timetable.json?app_id=3be79224&app_key=b0fc747a0aaf204a7d43df5d93e55cd4&train_status=passenger"
+    )
+    .then(result => {
+      res.send(result.data.departures.all[0]);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 axios
   .get(
     "https://transportapi.com/v3/uk/train/station/cre///timetable.json?app_id=3be79224&app_key=b0fc747a0aaf204a7d43df5d93e55cd4&train_status=passenger"
@@ -38,5 +51,5 @@ axios
   });
 
 app.listen(port, () => {
-  console.log("listening on port 3000");
+  console.log(`listening on port ${port}`);
 });
